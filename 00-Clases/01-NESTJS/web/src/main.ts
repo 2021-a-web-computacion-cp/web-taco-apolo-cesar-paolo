@@ -12,6 +12,41 @@ bootstrap();
 // npm run start -> levantar servidor ;
 // node js command prompt
 
+//CLASES
+abstract class Nombre {
+  public nombrePropiedad?: string; //undefined
+  private apellidoPropiedad = 'Taco';
+  protected edad = 1; //number Duck Typing
+  static comun = 10;
+  propiedadPublica: string;
+  constructor(
+    propiedadPublicaParametro: string,
+    public propiedadRapido: string,
+  ) {
+    this.propiedadPublica = propiedadPublicaParametro; //parametro
+    this.propiedadRapido; // transformo una propiedad
+  }
+  public funcionPublica(
+    parametroString: string, //? = puede ser undefined
+    parametroNumber?: number,
+  ) {
+    // omitir :void por defecto
+    //no hay return = undefined
+  }
+  private funcionPrivada(
+    parametroString: string, //puede ser undefinde
+    parametroNumber: number,
+  ) {
+    //no hay return
+  }
+  protected funcionPublica2(): number {
+    return 1;
+  }
+  static funcionEstatica(): string {
+    return 'string';
+  }
+}
+
 // VARIABLES PRIMITIVAS
 // TIPOS DE VARIABLES
 // MUTABLES (reasignar -> =)

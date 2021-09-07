@@ -1,9 +1,27 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  app.use(express.static('publico')); //servidor web estático
+  app.use(cookieParser('cookie secreta ejesto')); //secreto cookies
+  app.use(
+    //session
+    session({
+      name: 'server-session-id',
+      secret: 'Este es el mensaje secreto',
+      resave: true,
+      saveUnitialized: true,
+      cookie: { secure: false },
+      store: new FileStore(),
+    }),
+  );
+
+  await app.listen(3000); //puerto
 }
 bootstrap();
 

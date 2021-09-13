@@ -22,14 +22,14 @@ let AppController = class AppController {
     getHello() {
         return this.appService.getHello();
     }
-    holaTexto() {
-        return 'HOLA TEXTO';
+    helloText() {
+        return 'Hola Texto';
     }
-    holaHTML() {
+    HelloHTML() {
         return '<h1>Hola HTML</h1> <button>Click</button>';
     }
-    holaJSON() {
-        return '{mensaje: "Hola json" }';
+    helloJson() {
+        return '{mensaje: "Hola JSON"}';
     }
     badRequest() {
         throw new common_1.BadRequestException();
@@ -38,11 +38,8 @@ let AppController = class AppController {
         throw new common_1.InternalServerErrorException();
     }
     setearCookieInsegura(req, res) {
-        res.cookie('galletaInsegura', 'Tengo hambre');
-        res.cookie('galletaSeguraYFirmada', 'Web :3', {
-            secure: true,
-            signed: true,
-        });
+        res.cookie('cookieInsegura', 'esto esta inseguro');
+        res.cookie('cookieSegura', 'esto esta seguro :)', { secure: true });
         res.send('ok');
     }
     mostrarCookies(req) {
@@ -51,18 +48,6 @@ let AppController = class AppController {
             firmadas: req.signedCookies,
         };
         return mensaje;
-    }
-    parametrosConsulta(queryParams, params) {
-        return {
-            parametrosConsulta: queryParams,
-            parametrosRuta: params,
-        };
-    }
-    parametrosCuerpo(bodyParams, cabecerasPeticion) {
-        return {
-            parametrosCuerpo: bodyParams,
-            cabeceras: cabecerasPeticion,
-        };
     }
 };
 __decorate([
@@ -77,21 +62,21 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
-], AppController.prototype, "holaTexto", null);
+], AppController.prototype, "helloText", null);
 __decorate([
     common_1.Get('html'),
     common_1.HttpCode(201),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
-], AppController.prototype, "holaHTML", null);
+], AppController.prototype, "HelloHTML", null);
 __decorate([
     common_1.Get('json'),
     common_1.HttpCode(200),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
-], AppController.prototype, "holaJSON", null);
+], AppController.prototype, "helloJson", null);
 __decorate([
     common_1.Get('bad-request'),
     __metadata("design:type", Function),
@@ -119,26 +104,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "mostrarCookies", null);
-__decorate([
-    common_1.Get('parametros-consulta/:nombre/:apellido'),
-    common_1.HttpCode(200),
-    common_1.Header('Cache-Control', 'none'),
-    common_1.Header('EPN', 'SISTEMAS'),
-    __param(0, common_1.Query()),
-    __param(1, common_1.Param()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
-    __metadata("design:returntype", void 0)
-], AppController.prototype, "parametrosConsulta", null);
-__decorate([
-    common_1.Post('parametros-cuerpo'),
-    common_1.HttpCode(200),
-    __param(0, common_1.Body()),
-    __param(1, common_1.Headers()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
-    __metadata("design:returntype", void 0)
-], AppController.prototype, "parametrosCuerpo", null);
 AppController = __decorate([
     common_1.Controller(),
     __metadata("design:paramtypes", [app_service_1.AppService])

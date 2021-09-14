@@ -11,18 +11,20 @@ export class UsuarioService {
   crearUno(usuario: Prisma.EPN_USUARIOCreateInput) {
     return this.prisma.ePN_USUARIO.create({ data: usuario });
   }
-  actualizarUno(paramsUpdate: {
-    where: Prisma.EPN_USUARIOWhereUniqueInput;
+  actualizarUno(parametrosActualizar: {
+    id: number;
     data: Prisma.EPN_USUARIOUpdateInput;
   }) {
     return this.prisma.ePN_USUARIO.update({
-      data: paramsUpdate.data,
-      where: paramsUpdate.where,
+      data: parametrosActualizar.data,
+      where: {
+        id: parametrosActualizar.id,
+      },
     });
   }
-  elimnarUno(where: Prisma.EPN_USUARIOWhereUniqueInput) {
+  eliminarUno(id: number) {
     return this.prisma.ePN_USUARIO.delete({
-      where: where,
+      where: { id: id },
     });
   }
 }

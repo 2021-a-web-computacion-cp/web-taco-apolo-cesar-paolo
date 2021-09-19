@@ -9,12 +9,12 @@ async function bootstrap() {
   const app: any = await NestFactory.create(AppModule);
   app.set('view engine', 'ejs');
   app.use(express.static('publico')); //servidor web estático
-  app.use(cookieParser('cookie secreta ejesto')); //secreto cookies
+  app.use(cookieParser('cookie secreta')); //secreto cookies
   app.use(
     //session
     session({
       name: 'server-session-id',
-      secret: 'Este es el mensaje secreto',
+      secret: 'Yaff ponte ponte',
       resave: true,
       saveUnitialized: true,
       cookie: { secure: false },

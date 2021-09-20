@@ -1,2 +1,37 @@
 
+<%- include('./comunes/header') %>
+
 <h1>HOLA MUNDO</h1>
+
+<!-- <% %> TODO LO QUE ESTA DENTRO DE ESTO ES JS -->
+
+<!-- MOSTRAR -->
+<p> <% 15 %> </p>
+
+<!-- EJECUTAR -->
+<% const cpta = {nombre: "Cesar", apellido: "Taco", cedula: "1722488671"} %>
+<% const numero = 25 %>
+<% const mensaje = "Hola" %>
+
+<!-- EJEMPLO -->
+<p> <% cpta.nombre %> <% numero %>  <% mensaje %> </p>
+
+<% const aprobado = true %>
+
+<% if (aprobado)  {%>
+    <p> Aprobado! </p>
+<% } else { %>
+    <p> Rechazado </p>
+<% } %>
+
+<% const arregloNumeros = [1, 2, 3, 4, 5] %>
+
+<ul>
+
+    <% arregloNumeros.forEach( (object) => { %>
+    <li> <% object.toString() %> </li>
+    <% }) %>
+
+</ul>
+
+<%- include('./comunes/footer') %>

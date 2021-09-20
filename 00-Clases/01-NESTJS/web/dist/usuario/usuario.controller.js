@@ -21,8 +21,11 @@ let UsuarioController = class UsuarioController {
     constructor(usuarioService) {
         this.usuarioService = usuarioService;
     }
-    listaUsuarios(response) {
+    inicio(response) {
         response.render('inicio');
+    }
+    listaUsuarios(response) {
+        response.render('usuario/lista');
     }
     obtenerUno(parametroRuta) {
         return this.usuarioService.buscarUno(+parametroRuta.idUsuario);
@@ -54,6 +57,13 @@ let UsuarioController = class UsuarioController {
         return this.usuarioService.eliminarUno(parametroRuta.idUsuario);
     }
 };
+__decorate([
+    common_1.Get('inicio'),
+    __param(0, common_1.Res()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsuarioController.prototype, "inicio", null);
 __decorate([
     common_1.Get('lista-usuarios'),
     __param(0, common_1.Res()),

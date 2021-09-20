@@ -19,9 +19,14 @@ import { validate } from 'class-validator';
 export class UsuarioController {
   constructor(private usuarioService: UsuarioService) {}
 
+  @Get('inicio')
+  inicio(@Res() response){
+    response.render('inicio');
+  }
+
   @Get('lista-usuarios')
   listaUsuarios(@Res() response) {
-    response.render('inicio');
+    response.render('usuario/lista');
   }
 
   @Get(':idUsuario')

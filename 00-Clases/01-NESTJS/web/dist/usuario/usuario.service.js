@@ -19,6 +19,21 @@ let UsuarioService = class UsuarioService {
     buscarUno(id) {
         return this.prisma.ePN_USUARIO.findUnique({ where: { id: id } });
     }
+    buscarMuchos(parametrosBusqueda) {
+        const or = parametrosBusqueda.busqueda
+            ? {
+                OR: [
+                    { nombre: { contains: parametrosBusqueda.busqueda } },
+                    { apellido: { contains: parametrosBusqueda.busqueda } },
+                ],
+            }
+            : {};
+        return this.prisma.ePN_USUARIO.findMany({
+            where: or,
+            take: Number(parametrosBusqueda.take) || undefined,
+            skip: Number(parametrosBusqueda.skip) || undefined,
+        });
+    }
     crearUno(usuario) {
         return this.prisma.ePN_USUARIO.create({ data: usuario });
     }

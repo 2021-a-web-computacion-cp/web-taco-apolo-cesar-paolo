@@ -8,6 +8,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Res,
 } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
@@ -20,13 +21,35 @@ export class UsuarioController {
   constructor(private usuarioService: UsuarioService) {}
 
   @Get('inicio')
-  inicio(@Res() response){
+  inicio(@Res() response) {
     response.render('inicio');
   }
 
+  @Get('vista-crear')
+  vistaCrear(@Res() response) {
+    response.render('usuario/crear');
+  }
+
   @Get('lista-usuarios')
-  listaUsuarios(@Res() response) {
-    response.render('usuario/lista');
+  async listaUsuarios(@Res() response, @Query() parametrosConsulta) {
+    try {
+      //Validar parametros de consulta con un DTO (TODO)
+      const respuesta = await this.usuarioService.buscarMuchos({
+        skip: parametrosConsulta.skip ? +parametrosConsulta.skip : undefined,
+        take: parametrosConsulta.take ? +parametrosConsulta.take : undefined,
+        busqueda: parametrosConsulta.busqueda
+          ? parametrosConsulta.busqueda
+          : undefined,
+      });
+      console.log(respuesta);
+      response.render('usuario/lista', {
+        datos: {
+          usuarios: respuesta,
+        },
+      });
+    } catch (error) {
+      throw new InternalServerErrorException('Error del servidor');
+    }
   }
 
   @Get(':idUsuario')

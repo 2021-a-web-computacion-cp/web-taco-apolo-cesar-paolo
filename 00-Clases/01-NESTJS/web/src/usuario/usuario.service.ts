@@ -8,23 +8,24 @@ export class UsuarioService {
   buscarUno(id: number) {
     return this.prisma.ePN_USUARIO.findUnique({ where: { id: id } });
   }
-  buscarMuchos(searchParams: {
-    skip?: number;
-    take?: number; //orderBy?: Prisma.EPN_USUARIO
-    busqueda?: string;
+  buscarMuchos(parametrosBusqueda: {
+    skip?: number; //Registros que te saltas
+    take?: number; //Registros que tomas
+    busqueda?: string; // Lo que el usuario busca
+    // orderBy?: Prisma.EPN_UsuarioOrder;
   }) {
-    const or = searchParams.busqueda
+    const or = parametrosBusqueda.busqueda
       ? {
           OR: [
-            { nombre: { contains: searchParams.busqueda } },
-            { apellido: { contains: searchParams.busqueda } },
+            { nombre: { contains: parametrosBusqueda.busqueda } },
+            { apellido: { contains: parametrosBusqueda.busqueda } },
           ],
         }
       : {};
-    this.prisma.ePN_USUARIO.findMany({
+    return this.prisma.ePN_USUARIO.findMany({
       where: or,
-      take: Number(searchParams.take) || undefined,
-      skip: Number(searchParams.skip) || undefined,
+      take: Number(parametrosBusqueda.take) || undefined,
+      skip: Number(parametrosBusqueda.skip) || undefined,
     });
   }
   crearUno(usuario: Prisma.EPN_USUARIOCreateInput) {

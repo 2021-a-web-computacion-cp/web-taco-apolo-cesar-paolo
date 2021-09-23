@@ -26,8 +26,31 @@ export class UsuarioController {
   }
 
   @Get('vista-crear')
-  vistaCrear(@Res() response) {
-    response.render('usuario/crear');
+  vistaCrear(@Res() response, @Query() qqueryParams) {
+    response.render('usuario/crear', {
+      datos: {
+        mensaje: qqueryParams.mensaje,
+      },
+    });
+  }
+
+  @Post('crear-usuario-formulario')
+  async crearUsuario(@Res() response, @Body() bodyParams) {
+    try {
+      const userRes = await this.usuarioService.crearUno({
+        nombre: bodyParams.nombre,
+        apellido: bodyParams.apellido,
+      });
+      //response.send(userRes); -> ENVIA LA BASE LOS DATOS PERO DEVUELVE JSON
+      response.redirect(
+        '/usuario/vista-crear' +
+          '?mensaje=Se creo el usuario ' +
+          bodyParams.nombre,
+      );
+    } catch (e) {
+      console.log(e);
+      throw new InternalServerErrorException(e);
+    }
   }
 
   @Get('lista-usuarios')
@@ -45,10 +68,24 @@ export class UsuarioController {
       response.render('usuario/lista', {
         datos: {
           usuarios: respuesta,
+          mensaje: parametrosConsulta.mensaje,
         },
       });
     } catch (error) {
       throw new InternalServerErrorException('Error del servidor');
+    }
+  }
+
+  @Post('eliminiar-usuario/:idUsuario')
+  async elminarUsuario(@Res() response, @Param() routeParams) {
+    try {
+      await this.usuarioService.eliminarUno(+routeParams.idUsuario);
+      response.redirect(
+        '/usuario/lista-usuarios' + '?mensaje=Se elimino el usuario',
+      );
+    } catch (e) {
+      console.log(e);
+      throw new InternalServerErrorException(e);
     }
   }
 

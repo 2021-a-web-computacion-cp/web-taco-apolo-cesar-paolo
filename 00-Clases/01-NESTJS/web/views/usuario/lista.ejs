@@ -2,6 +2,12 @@
 
 <div class='container'>
     <h1>Lista</h1>
+    <% const existeMensaje = typeof datos.mensaje !== "undefined"%>
+    <% if (existeMensaje){%>
+        <div class="alert alert-success" role="alert">
+            <%= datos.mensaje %>
+        </div>
+    <%}%>
     <form action='/usuario/lista-usuarios' method="get">
         <div class="mb-3">
             <label for="busqueda" class="form-label"> Busqueda </label>
@@ -12,7 +18,8 @@
                    id="busqueda"
                    aria-describedby="ayudaBusqueda">
             <div id="ayudaBusqueda" class="form-text"> Puede buscar por nombre o apellido. </div>
-        </div> <button type="submit" class="btn btn-primary w-100">Buscar</button> </form>
+        </div> <button type="submit" class="btn btn-primary w-100">Buscar</button>
+    </form>
     <div>
         <a href="/usuario/vista-crear">
             <button class="btn btn-success">
@@ -27,7 +34,9 @@
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
-            <th scope="col">Eliminar</th>
+            <th scope="col">
+                Eliminar
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -37,7 +46,11 @@
                 <th><%= objeto.id %></th>
                 <th><%= objeto.nombre %></th>
                 <th><%= objeto.apellido %></th>
-                <th><button class='btn btn-danger'>Eliminar</button></th>
+                <th>
+                    <form action='/usuario/eliminar-usuario/<%= objeto.id %>' method='post'>
+                        <button class='btn btn-danger'>Eliminar</button>
+                    </form>
+                </th>
             </tr>
             <% } ) %>
         </ul>

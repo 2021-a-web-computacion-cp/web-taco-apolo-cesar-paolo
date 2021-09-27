@@ -3,10 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaService } from './prisma.service';
 import { UsuarioModule } from './usuario/usuario.module';
+import { MotoModule } from './moto/moto.module';
 
 //DECORADOR -> FUNCIONES
 @Module({
-  imports: [UsuarioModule], // MODULOS IMPORTADOS
+  imports: [UsuarioModule, MotoModule], // MODULOS IMPORTADOS
   controllers: [AppController], //CONTROLADORES DE ESTE MODULO
   providers: [AppService, PrismaService], //SERVICIOS DE ESTE MODULO
   exports: [AppService], // SERVICIOS EXPORTADOS (SE PUEDEN USAR FUERA DE ESTE MODULO)

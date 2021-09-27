@@ -76,7 +76,7 @@ export class UsuarioController {
     }
   }
 
-  @Post('eliminiar-usuario/:idUsuario')
+  @Post('eliminar-usuario/:idUsuario')
   async elminarUsuario(@Res() response, @Param() routeParams) {
     try {
       await this.usuarioService.eliminarUno(+routeParams.idUsuario);

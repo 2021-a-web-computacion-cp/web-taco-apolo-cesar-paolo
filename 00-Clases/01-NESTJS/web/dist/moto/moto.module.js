@@ -6,22 +6,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.MotoModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const prisma_service_1 = require("./prisma.service");
-const usuario_module_1 = require("./usuario/usuario.module");
-const moto_module_1 = require("./moto/moto.module");
-let AppModule = class AppModule {
+const prisma_service_1 = require("../prisma.service");
+const moto_service_1 = require("./moto.service");
+const moto_controller_1 = require("./moto.controller");
+let MotoModule = class MotoModule {
 };
-AppModule = __decorate([
+MotoModule = __decorate([
     common_1.Module({
-        imports: [usuario_module_1.UsuarioModule, moto_module_1.MotoModule],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService, prisma_service_1.PrismaService],
-        exports: [app_service_1.AppService],
+        imports: [],
+        providers: [
+            moto_service_1.MotoService,
+            prisma_service_1.PrismaService,
+        ],
+        exports: [
+            moto_service_1.MotoService,
+        ],
+        controllers: [
+            moto_controller_1.MotoController,
+        ],
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], MotoModule);
+exports.MotoModule = MotoModule;
+//# sourceMappingURL=moto.module.js.map

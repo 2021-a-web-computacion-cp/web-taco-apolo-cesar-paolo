@@ -1,0 +1,91 @@
+<%- include('../comunes/header') %>
+
+<h1>Crear Moto</h1>
+<div class="container">
+
+    <% const existeMensaje = typeof datos.mensaje !== "undefined"%>
+    <% if (existeMensaje){%>
+        <div class="alert alert-success" role="alert">
+            <%= datos.mensaje %>
+        </div>
+    <%}%>
+
+    <form action='/moto/crear-moto-formulario' method="post">
+        <div class="mb-3">
+            <label for="nombre" class="form-label"> Nombre </label>
+            <input placeholder="Ej: nombre moto"
+                   type="text"
+                   name="nombre"
+                   class="form-control"
+                   id="nombre"
+                   aria-describedby="ayudaNombre">
+            <div id="ayudaNombre" class="form-text">
+                Ingrese el nombre.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="marca" class="form-label"> Marca </label>
+            <input placeholder="Ej: Yamaha"
+                   type="text"
+                   name="marca"
+                   class="form-control"
+                   id="marca"
+                   aria-describedby="ayudamarca">
+            <div id="ayudamarca" class="form-text">
+                Ingrese la marca.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="cilindraje" class="form-label"> Cilindraje (cc)</label>
+            <input placeholder="Ej: 160"
+                   type="number"
+                   name="cilindraje"
+                   class="form-control"
+                   id="marca"
+                   aria-describedby="ayudacilindraje">
+            <div id="ayudacilindraje" class="form-text">
+                Ingrese el cilindraje.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="kilometraje" class="form-label"> Kilometraje (km)</label>
+            <input placeholder="Ej: 120000"
+                   type="number"
+                   name="kilometraje"
+                   class="form-control"
+                   id="kilometraje"
+                   aria-describedby="ayudakilometraje">
+            <div id="ayudakilometraje" class="form-text">
+                Ingrese el kilometraje.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="anio" class="form-label"> Año </label>
+            <input placeholder="Ej: 2021"
+                   type="number"
+                   name="anio"
+                   class="form-control"
+                   id="anio"
+                   aria-describedby="ayudaanio">
+            <div id="ayudaanio" class="form-text">
+                Ingrese el año.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label"> Precio </label>
+            <input placeholder="Ej: 20000"
+                   type="number"
+                   name="precio"
+                   class="form-control"
+                   id="precio"
+                   aria-describedby="ayudaprecio">
+            <div id="ayudaprecio" class="form-text">
+                Ingrese el precio.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Crear</button>
+    </form>
+</div>
+
+
+<%- include('../comunes/footer') %>

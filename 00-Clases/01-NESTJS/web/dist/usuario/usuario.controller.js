@@ -139,7 +139,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "listaUsuarios", null);
 __decorate([
-    common_1.Post('eliminiar-usuario/:idUsuario'),
+    common_1.Post('eliminar-usuario/:idUsuario'),
     __param(0, common_1.Res()),
     __param(1, common_1.Param()),
     __metadata("design:type", Function),

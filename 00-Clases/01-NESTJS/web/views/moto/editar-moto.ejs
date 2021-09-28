@@ -10,7 +10,16 @@
         </div>
     <%} %>
 
-    <form action='/moto/editar-moto-formulario/<%=datos.moto.id%>' method="post">
+<!--    DESPLEGAR DATOS ACTUALES-->
+    <div>
+        <h4 style="color: blue">Datos actuales</h4>
+        <span class="border border-info">
+            NOMBRE: <%= datos.moto.nombre%>; MARCA: <%= datos.moto.marca%>; CILINDRAJE <%= datos.moto.cilindraje%>;
+            KILOMETRAJE <%= datos.moto.kilometraje%>; AÑO <%= datos.moto.anio%>; PRECIO: <%= datos.moto.precio%>
+        </span>
+    </div>
+    <br>
+    <form style="padding: 10px" class="border border-dark" action='/moto/editar-moto-formulario/<%=datos.moto.id%>' method="post">
         <div class="mb-3">
             <label for="nombre" class="form-label"> Nombre </label>
             <input placeholder="Ej: nombre moto"
@@ -19,7 +28,7 @@
                    class="form-control"
                    id="nombre"
                    aria-describedby="ayudaNombre"
-            required>
+                   required>
             <div id="ayudaNombre" class="form-text">
                 Ingrese el nombre.
             </div>
@@ -31,7 +40,8 @@
                    name="marca"
                    class="form-control"
                    id="marca"
-                   aria-describedby="ayudamarca">
+                   aria-describedby="ayudamarca"
+                   required>
             <div id="ayudamarca" class="form-text">
                 Ingrese la marca.
             </div>
@@ -43,7 +53,8 @@
                    name="cilindraje"
                    class="form-control"
                    id="marca"
-                   aria-describedby="ayudacilindraje">
+                   aria-describedby="ayudacilindraje"
+                   required>
             <div id="ayudacilindraje" class="form-text">
                 Ingrese el cilindraje.
             </div>
@@ -55,7 +66,8 @@
                    name="kilometraje"
                    class="form-control"
                    id="kilometraje"
-                   aria-describedby="ayudakilometraje">
+                   aria-describedby="ayudakilometraje"
+                   required>
             <div id="ayudakilometraje" class="form-text">
                 Ingrese el kilometraje.
             </div>
@@ -67,7 +79,8 @@
                    name="anio"
                    class="form-control"
                    id="anio"
-                   aria-describedby="ayudaanio">
+                   aria-describedby="ayudaanio"
+                   required>
             <div id="ayudaanio" class="form-text">
                 Ingrese el año.
             </div>
@@ -79,7 +92,8 @@
                    name="precio"
                    class="form-control"
                    id="precio"
-                   aria-describedby="ayudaprecio">
+                   aria-describedby="ayudaprecio"
+                   required>
             <div id="ayudaprecio" class="form-text">
                 Ingrese el precio.
             </div>
@@ -87,6 +101,7 @@
         <button type="submit" class="btn btn-primary w-100">Actualizar</button>
     </form>
 </div>
+<br>
 
 
 <%- include('../comunes/footer') %>
